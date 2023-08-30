@@ -11,4 +11,4 @@
 
 
 ### Диаграмма
-![OTUS DB HW 1](./images/OTUS_DB_HW_1.drawio)
+![OTUS DB HW 1](./images/OTUS_DB_HW_1.drawio.png)
