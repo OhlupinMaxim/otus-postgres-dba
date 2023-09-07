@@ -32,10 +32,10 @@
 
 #### __Сущности__
 - Пользователь (User)
-- Товары (Products)
+- Товары (Product)
 - Точки торговли (Shop_Point)
 - Смены (Work_Shift)
-- Кол-во проданного товара за смену (Amount_Products)
+- Кол-во проданного товара за смену (Amount_Product)
 
 
 ### __Индексы__
@@ -50,6 +50,8 @@
 
 ### __Описание сущностей__
 ##### Пользователь (User)
+- id - тип integer - __первичный ключ__
+  - PK
 - username - тип varchar(64) - __имя пользователя (login сотрудника или владельца предприятия)__
   - Not Null
   - Check != ''
@@ -60,6 +62,8 @@
   - Not Null
 
 ##### Товары (Products)
+- id - тип integer - __первичный ключ__
+  - PK
 - name - тип varchar(256) - __Наименование товара__
   - Not Null
   - Check != ''
@@ -74,6 +78,8 @@
 - manufacturer - тип varchar(256) - __Производитель__
 
 ##### Точки торговли (Shop_Point)
+- id - тип integer - __первичный ключ__
+  - PK
 - name - тип varchar(128) - __Короткое наименование точки торговли__ (Например На Павелецкой)
   - Check != ''
   - Unique
@@ -84,10 +90,12 @@
   - Not Null
 
 ##### Смены (Work_Shift)
-- user_id - тип integer - __Идентификатор сотрудника работающего в эту смену__
+- id - тип integer - __первичный ключ__
+  - PK
+- fk_user - тип integer - __Идентификатор сотрудника работающего в эту смену__
   - Not Null
   - FK (User)
-- shop_point_id - тип integer - __Идентификатор точки торговли__
+- fk_shop_point - тип integer - __Идентификатор точки торговли__
   - Not Null
   - FK (Shop_Point)
 - date_open - тип date - __Дата открытия смены__
@@ -104,10 +112,12 @@
   - Check > 0
 
 ##### Кол-во проданного товара за смену (Amount_Products)
-- work_shift_id - тип integer - __Идентификатор смены__
+- id - тип integer - __первичный ключ__
+  - PK
+- fk_work_shift - тип integer - __Идентификатор смены__
   - Not Null
   - FK (Work_Shift)
-- product_id - тип integer - __Идентификатор товара__
+- fk_product - тип integer - __Идентификатор товара__
   - Not Null
   - FK (Product)
 - unit - тип varchar(8) - __Единица измерения товара (мешки или кг или граммы)__
