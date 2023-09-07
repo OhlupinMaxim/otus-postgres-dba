@@ -39,9 +39,9 @@
 
 
 ### __Индексы__
-- составной индекс в сущности Amount_Products по полям (work_shift_id, product_id).
+- составной индекс в сущности Amount_Products по полям (work_shift_id, product_id). idx_amount_products_work_shift_id_product_id
   Данный запрос имеет высокую кардинальность, так по каждой точке еждневно будут идти запросы в БД. (Как со стороны Предпринимателя так и со стороны сотрудника)
-- составной индекс в сущности Work_Shift по полям (user_id, shop_point_id).
+- составной индекс в сущности Work_Shift по полям (user_id, shop_point_id). idx_work_shift_user_id_shop_point_id
   Данный запрос в имеет высокую координальность, так как его выполнение неободимо составления статистики и последующего анализа.
 
 
@@ -51,29 +51,23 @@
 ### __Описание сущностей__
 ##### Пользователь (User)
 - username - тип varchar(64) - __имя пользователя (login сотрудника или владельца предприятия)__
-  ***Ограничения***
   - Not Null
   - Check != ''
 - password - тип varchar(64) - __пароль__
-  ***Ограничения***
   - Not Null
   - Check != ''
 - is_admin - тип boolean - __имеет ли данный пользователь привилегии__
-  ***Ограничения***
   - Not Null
 
 ##### Товары (Products)
 - name - тип varchar(256) - __Наименование товара__
-  ***Ограничения***
   - Not Null
   - Check != ''
 - article - тип integer - __Артикул__
-  ***Ограничения***
   - Not Null
   - Unique
   - Check > 0
 - price - тип integer - __Цена__
-  ***Ограничения***
   - Not Null
   - Unique
   - Check > 0
@@ -81,57 +75,48 @@
 
 ##### Точки торговли (Shop_Point)
 - name - тип varchar(128) - __Короткое наименование точки торговли__ (Например На Павелецкой)
-  ***Ограничения***
   - Check != ''
   - Unique
   - Not Null
 - address - тип varchar(256) - __Полный адрес точки торговли__
-  ***Ограничения***
   - Check != ''
   - Unique
   - Not Null
 
 ##### Смены (Work_Shift)
 - user_id - тип integer - __Идентификатор сотрудника работающего в эту смену__
-  ***Ограничения***
   - Not Null
+  - FK (User)
 - shop_point_id - тип integer - __Идентификатор точки торговли__
-  ***Ограничения***
   - Not Null
+  - FK (Shop_Point)
 - date_open - тип date - __Дата открытия смены__
-  ***Ограничения***
   - Not Null
 - is_close - тип boolean - __Закрыта ли смена__
-  ***Ограничения***
   - Not Null
 - profit - тип integer - __Прибыль__
-  ***Ограничения***
   - Not Null
   - Unique
   - Check > 0
 - expenses - тип integer - __Расходы__
-  ***Ограничения***
   - Not Null
   - Unique
   - Check > 0
 
 ##### Кол-во проданного товара за смену (Amount_Products)
 - work_shift_id - тип integer - __Идентификатор смены__
-  ***Ограничения***
   - Not Null
+  - FK (Work_Shift)
 - product_id - тип integer - __Идентификатор товара__
-  ***Ограничения***
   - Not Null
+  - FK (Product)
 - unit - тип varchar(8) - __Единица измерения товара (мешки или кг или граммы)__
-  ***Ограничения***
   - Not Null
   - Check != ''
 - unit_coefficient - тип real  - __Коэффициент для расчета цены__
-  ***Ограничения***
   - Not Null
   - Check != 0
   - Check <= 1
 - count - тип integer - __Кол-во товара проданного товара__
-  ***Ограничения***
   - Not Null
   - Check > 0
