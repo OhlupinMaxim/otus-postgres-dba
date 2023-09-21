@@ -7,9 +7,9 @@
 Нам необохдимо скачать образ Postgres из DockerHub.
 
 - Скачиваем образ и запускаем его.
-![скрипт up_postgres.sh](../images/OTUS_DB_HW_6_1.png == 600x480)
-![скрипт up_postgres.sh](../images/OTUS_DB_HW_6_2.png == 600x480)
-![скрипт up_postgres.sh](../images/OTUS_DB_HW_6_3.png == 600x480)
+![скрипт up_postgres.sh](../images/OTUS_DB_HW_6_1.png)
+![скрипт up_postgres.sh](../images/OTUS_DB_HW_6_2.png)
+![скрипт up_postgres.sh](../images/OTUS_DB_HW_6_3.png)
 
 - Создаем базу данных, схему и пользователя.
 ![скрипт create_infra.sh create_db_infra.sql](../images/OTUS_DB_HW_6_4.png)
