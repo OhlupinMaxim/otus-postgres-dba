@@ -31,9 +31,12 @@
 ```
 
 #### __Сущности__
-- Пользователь (User)
+- Пользователь (Staff)
 - Товары (Product)
+- Единицы измерения продажи продукта (Product_Unit)
 - Точки торговли (Shop_Point)
+- Склад на точке (Warehouse)
+- Таблица связи Многие ко Многим (Shop_Point_Warehouse)
 - Смены (Work_Shift)
 - Кол-во проданного товара за смену (Amount_Product)
 
@@ -49,7 +52,8 @@
 ![OTUS DB HW 1](./images/OTUS_DB_HW_1.drawio.png)
 
 ### __Описание сущностей__
-##### Пользователь (User)
+
+##### Пользователь (Staff)
 - id - тип integer - __первичный ключ__
   - PK
 - username - тип varchar(64) - __имя пользователя (login сотрудника или владельца предприятия)__
@@ -58,7 +62,8 @@
 - password - тип varchar(64) - __пароль__
   - Not Null
   - Check != ''
-- is_admin - тип boolean - __имеет ли данный пользователь привилегии__
+- staff_full_name - тип varchar(64) - __ФИО__
+- is_master_staff - тип boolean - __имеет ли данный пользователь привилегии__
   - Not Null
 
 ##### Товары (Product)
@@ -71,11 +76,21 @@
   - Not Null
   - Unique
   - Check > 0
-- price - тип integer - __Цена__
-  - Not Null
-  - Unique
-  - Check > 0
 - manufacturer - тип varchar(256) - __Производитель__
+
+
+##### Единицы измерения продажи продукта (Product_Unit)
+- id - тип integer - __первичный ключ__
+  - PK
+- fk_product - тип real - __внешний ключ на товар__
+  - Not Null
+  - FK (Product)
+- unit - тип varchar(8) - __единица измерения__
+  - NOT Null
+  - Check != ''
+- price_per_unit - тип real - __цена за единицу товара__
+  - NOT Null
+  - Check > 0
 
 ##### Точки торговли (Shop_Point)
 - id - тип integer - __первичный ключ__
@@ -89,6 +104,22 @@
   - Unique
   - Not Null
 
+#### Склад в точке (Warehouse)
+- id - тип integer - __первичный ключ__
+  - PK
+- oto_shop_point - тип integer - __идентфикатор точки__
+  - NOT NULL
+
+#### Таблица связи Warehouse <-> Product (Shop_Point_Warehouse)
+- id - тип integer - __первичный ключ__
+  - PK
+- fk_product
+  - Not Null
+  - FK (Product)
+- fk_warehouse
+  - Not Null
+  - FK (Warehouse)
+
 ##### Смены (Work_Shift)
 - id - тип integer - __первичный ключ__
   - PK
@@ -98,15 +129,15 @@
 - fk_shop_point - тип integer - __Идентификатор точки торговли__
   - Not Null
   - FK (Shop_Point)
-- date_open - тип date - __Дата открытия смены__
+- date_shift - тип date - __Дата открытия смены__
   - Not Null
 - is_close - тип boolean - __Закрыта ли смена__
   - Not Null
-- profit - тип integer - __Прибыль__
+- profit - тип real - __Прибыль__
   - Not Null
   - Unique
   - Check > 0
-- expenses - тип integer - __Расходы__
+- expenses - тип real - __Расходы__
   - Not Null
   - Unique
   - Check > 0
@@ -120,13 +151,6 @@
 - fk_product - тип integer - __Идентификатор товара__
   - Not Null
   - FK (Product)
-- unit - тип varchar(8) - __Единица измерения товара (мешки или кг или граммы)__
-  - Not Null
-  - Check != ''
-- unit_coefficient - тип real  - __Коэффициент для расчета цены__
-  - Not Null
-  - Check != 0
-  - Check <= 1
-- count - тип integer - __Кол-во товара проданного товара__
+- number_of_sold - тип integer - __Кол-во товара проданного товара__
   - Not Null
   - Check > 0
