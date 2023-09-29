@@ -1,3 +1,6 @@
 update_draw.sh
 docs/*.bkp
 docs/*.dtmp
+
+create_db/sb_crm/drop_all.sql
+create_db/sb_crm/data

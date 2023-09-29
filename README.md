@@ -110,7 +110,7 @@
 - oto_shop_point - тип integer - __идентфикатор точки__
   - NOT NULL
 
-#### Таблица связи Warehouse <-> Product (Shop_Point_Warehouse)
+#### Таблица связи Warehouse <-> Product (Product_Warehouse)
 - id - тип integer - __первичный ключ__
   - PK
 - fk_product
@@ -123,7 +123,7 @@
 ##### Смены (Work_Shift)
 - id - тип integer - __первичный ключ__
   - PK
-- fk_user - тип integer - __Идентификатор сотрудника работающего в эту смену__
+- fk_staff - тип integer - __Идентификатор сотрудника работающего в эту смену__
   - Not Null
   - FK (User)
 - fk_shop_point - тип integer - __Идентификатор точки торговли__
@@ -134,13 +134,11 @@
 - is_close - тип boolean - __Закрыта ли смена__
   - Not Null
 - profit - тип real - __Прибыль__
-  - Not Null
-  - Unique
-  - Check > 0
+  - Default (0.0)
+  - Check >= 0
 - expenses - тип real - __Расходы__
-  - Not Null
-  - Unique
-  - Check > 0
+  - Default (0.0)
+  - Check >= 0
 
 ##### Кол-во проданного товара за смену (Amount_Product)
 - id - тип integer - __первичный ключ__
@@ -151,6 +149,9 @@
 - fk_product - тип integer - __Идентификатор товара__
   - Not Null
   - FK (Product)
+- fk_product_unit - тип integer - __Идентификатор единицы измерения проданного товара__
+  - Not Null
+  - FK (Product_Unit)
 - number_of_sold - тип integer - __Кол-во товара проданного товара__
   - Not Null
   - Check > 0
