@@ -42,9 +42,9 @@
 
 
 ### __Индексы__
-- составной индекс в сущности Amount_Products по полям (work_shift_id, product_id). idx_amount_products_work_shift_id_product_id
+- составной индекс в сущности Amount_Products по полям (fk_work_shift, fk_product, fk_product_unit). idx_amount_products_fK_work_shift_fk_product_fk_product_unit
   Данный запрос имеет высокую кардинальность, так по каждой точке еждневно будут идти запросы в БД. (Как со стороны Предпринимателя так и со стороны сотрудника)
-- составной индекс в сущности Work_Shift по полям (user_id, shop_point_id). idx_work_shift_user_id_shop_point_id
+- составной индекс в сущности Work_Shift по полям (fk_user, fk_shop_point). idx_work_shift_fk_user_fk_shop_point
   Данный запрос в имеет высокую координальность, так как его выполнение неободимо составления статистики и последующего анализа.
 
 
