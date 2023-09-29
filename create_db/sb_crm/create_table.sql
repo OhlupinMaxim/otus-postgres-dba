@@ -66,3 +66,11 @@ CREATE TABLE sb_crm_schema.Amount_Product (
 	FOREIGN KEY (fk_product) REFERENCES sb_crm_schema.Product(id),
 	FOREIGN KEY (fk_product_unit) REFERENCES sb_crm_schema.Product_Unit(id)
 );
+
+CREATE INDEX idx_amount_products_fk_work_shift_fk_product_fk_product_unit ON sb_crm_schema.Amount_Product (
+	fk_work_shift, fk_product, fk_product_unit
+);
+
+CREATE INDEX idx_work_shift_fk_staff_fk_shop_point ON sb_crm_schema.Work_Shift (
+	fk_staff, fk_shop_point
+);
