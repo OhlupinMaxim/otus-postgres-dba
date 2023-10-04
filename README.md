@@ -35,8 +35,7 @@
 - Товары (Product)
 - Единицы измерения продажи продукта (Product_Unit)
 - Точки торговли (Shop_Point)
-- Склад на точке (Warehouse)
-- Таблица связи Многие ко Многим (Shop_Point_Warehouse)
+- Склад на точке (Shop_Point_Product)
 - Смены (Work_Shift)
 - Кол-во проданного товара за смену (Amount_Product)
 
@@ -104,21 +103,16 @@
   - Unique
   - Not Null
 
-#### Склад в точке (Warehouse)
+#### Склад в точке (Shop_Point_Product)
 - id - тип integer - __первичный ключ__
   - PK
-- oto_shop_point - тип integer - __идентфикатор точки__
+- fk_shop_point - тип integer - __идентфикатор точки__
   - NOT NULL
-
-#### Таблица связи Warehouse <-> Product (Product_Warehouse)
-- id - тип integer - __первичный ключ__
-  - PK
-- fk_product
-  - Not Null
-  - FK (Product)
-- fk_warehouse
-  - Not Null
-  - FK (Warehouse)
+  - FK
+- fk_product - тип integer - __идентфикатор точки__
+  - NOT NULL
+  - FK
+- count_products - тип integer - __кол-во единиц товара__
 
 ##### Смены (Work_Shift)
 - id - тип integer - __первичный ключ__
@@ -146,9 +140,6 @@
 - fk_work_shift - тип integer - __Идентификатор смены__
   - Not Null
   - FK (Work_Shift)
-- fk_product - тип integer - __Идентификатор товара__
-  - Not Null
-  - FK (Product)
 - fk_product_unit - тип integer - __Идентификатор единицы измерения проданного товара__
   - Not Null
   - FK (Product_Unit)

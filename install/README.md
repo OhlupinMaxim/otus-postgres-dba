@@ -16,5 +16,5 @@
 ![скрипт create_infra.sh create_db_infra.sql](../images/OTUS_DB_HW_6_5.png)
 
 - Входим в БД под созданным пользователем в созданную БД
-![скрипт up_postgres.sh](../images/OTUS_DB_HW_6_6.png)
-![скрипт up_postgres.sh](../images/OTUS_DB_HW_6_7.png)
+![скрипт psql.sh](../images/OTUS_DB_HW_6_6.png)
+![скрипт psql.sh](../images/OTUS_DB_HW_6_7.png)
