@@ -4,3 +4,5 @@ docs/*.dtmp
 
 create_db/sb_crm/drop_all.sql
 create_db/sb_crm/data
+
+create_python/
