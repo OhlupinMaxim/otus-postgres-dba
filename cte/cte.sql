@@ -8,7 +8,8 @@ SELECT
 FROM
     statistic
 GROUP BY
-    year_game;
+    year_game
+ORDER BY year_game;
 
 -- Аналог запроса через CTE
 WITH summer as (
@@ -20,11 +21,12 @@ WITH summer as (
     GROUP BY
         year_game
 )
-select
+SELECT
     year_game,
     sum_points
-from
-    summer;
+FROM
+    summer
+ORDER BY year_game;
 
 -- функция LAG подсчета за текущий год и предыдущий
 SELECT
@@ -32,7 +34,7 @@ SELECT
     player_name,
     points,
     LAG(points, 1) OVER (
-        partition by player_id
+        PARTITION BY player_id
         ORDER BY
             year_game
     ) prev_year_points
