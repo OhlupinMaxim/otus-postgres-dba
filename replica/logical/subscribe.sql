@@ -1,0 +1,1 @@
+CREATE SUBSCRIPTION logical_misc_pub CONNECTION 'host=0.0.0.0 port=5434 user=postgres password=pass dbname=logical_misc_db' PUBLICATION logical_misc_pub WITH (copy_data=true);
